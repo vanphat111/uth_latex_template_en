@@ -1,0 +1,68 @@
+\chapter{IMPLEMENTATION AND EXPERIMENTAL RESULTS}
+\label{chap:implementation}
+
+[This chapter details the development environment, implementation highlights, experimental setup, and analysis of results.]
+
+% ================= SECTION 4.1 =================
+\section{Development Environment}
+\label{sec:environment}
+
+[Describe the hardware and software configuration used during development.]
+
+\begin{table}[H]
+    \centering
+    \caption{Experimental Hardware and Software Environment}
+    \label{tab:sample_env}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Component} & \textbf{Specification} \\ \hline
+        Operating System & Linux (Ubuntu / Arch Linux) \\ \hline
+        Programming Language & Python 3.x \\ \hline
+        Compiler / Toolchain & GCC / Clang / Python runtime \\ \hline
+        Memory (RAM) & 16 GB \\ \hline
+    \end{tabular}
+    \source{Author's testbed setup}
+\end{table}
+
+% ================= SECTION 4.2 =================
+\section{Implementation Details}
+\label{sec:code_details}
+
+A sample algorithm implementation in Python is shown in Listing~\ref{lst:sample_code}.
+
+\begin{lstlisting}[language=Python, caption={Sample Algorithm Implementation}, label={lst:sample_code}]
+def compute_metrics(data_samples, threshold=0.5):
+    """
+    Compute classification evaluation metrics.
+    """
+    results = []
+    for sample in data_samples:
+        score = sample.get("score", 0.0)
+        is_positive = score >= threshold
+        results.append({"id": sample["id"], "prediction": is_positive})
+    return results
+
+if __name__ == "__main__":
+    test_data = [{"id": 1, "score": 0.82}, {"id": 2, "score": 0.35}]
+    print(compute_metrics(test_data))
+\end{lstlisting}
+
+% ================= SECTION 4.3 =================
+\section{Experimental Results and Discussion}
+\label{sec:results}
+
+[Present quantitative results, comparative performance, and analytical discussion.]
+
+\begin{table}[H]
+    \centering
+    \caption{Experimental Performance Evaluation}
+    \label{tab:sample_results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Test Case} & \textbf{Data Size} & \textbf{Execution Time (ms)} & \textbf{Status} \\ \hline
+        TC-01 & 1 KB & 0.45 & Passed \\ \hline
+        TC-02 & 10 KB & 2.18 & Passed \\ \hline
+        TC-03 & 100 KB & 18.64 & Passed \\ \hline
+    \end{tabular}
+    \source{Experimental measurements recorded by the author}
+\end{table}

@@ -1,0 +1,157 @@
+% ================= DOCUMENT CLASS =================
+% Supports 13pt font size
+\documentclass[13pt,a4paper,oneside]{extreport}
+
+% ================= BASIC PACKAGES & ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage[english]{babel}
+\usepackage{mathptmx} % Times New Roman Font
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=30mm,
+    right=20mm,
+    top=25mm,
+    bottom=25mm
+}
+
+% ================= LINE & PARAGRAPH SPACING =================
+\usepackage{setspace}
+\setstretch{1.3} % ~1.5 line spacing equivalent in Word
+\setlength{\parindent}{0cm} % Paragraph indentation
+\setlength{\parskip}{6pt}   % Space between paragraphs
+
+% ================= GRAPHICS & FIGURES =================
+\usepackage{graphicx}
+\graphicspath{{figures/}} % Auto-search figures/ folder
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% ================= TABLES & MATHEMATICS =================
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{url}
+\usepackage{cite} % IEEE citation format [1], [2]
+
+% ================= CODE LISTINGS =================
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\fontsize{10}{12}\selectfont,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{red!70!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% ================= TABLE OF CONTENTS (TOCLOFT) =================
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{6pt}   % Space before chapter in TOC
+\setlength{\cftbeforesecskip}{2pt}    % Space between sections
+\setlength{\cftbeforesubsecskip}{1pt} % Space between subsections
+\setlength{\cftbeforetabskip}{3pt}    % Space in List of Tables
+\setlength{\cftbeforefigskip}{3pt}    % Space in List of Figures
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Dots for chapters
+
+% ================= PAGE NUMBERING (FANCYHDR) =================
+\usepackage{fancyhdr}
+\pagestyle{empty}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% ================= HEADING STYLES (TITLESEC) =================
+\usepackage{titlesec}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+% Level 1: CHAPTER X. CHAPTER NAME (14pt, Uppercase, Bold, Centered)
+\titleformat{\chapter}[block]
+  {\normalfont\fontsize{14}{17}\bfseries\centering}
+  {\MakeUppercase{\chaptertitlename\ \thechapter.}}{0.5em}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+
+% Level 2: 1.1. Section Title (13pt, Bold, Left-aligned)
+\titleformat{\section}
+  {\normalfont\fontsize{13}{16}\bfseries}
+  {\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% Level 3: 1.1.1. Subsection Title (13pt, Italic, Bold, Left-aligned)
+\titleformat{\subsection}
+  {\normalfont\fontsize{13}{16}\itshape\bfseries}
+  {\thesubsection.}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% Level 4: a. Subsubsection Title (13pt, Bold, Left-aligned)
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{13}{16}\bfseries}
+  {\alph{subsubsection}.}{0.5em}{}
+\titlespacing*{\subsubsection}{0pt}{8pt}{2pt}
+
+% ================= CAPTION STYLES =================
+\usepackage{caption}
+\captionsetup[table]{
+    position=top,
+    justification=raggedright,
+    singlelinecheck=false,
+    font={bf,small},
+    skip=6pt,
+    labelsep=period
+}
+\captionsetup[figure]{
+    position=bottom,
+    justification=centering,
+    singlelinecheck=false,
+    font={bf,small},
+    skip=6pt,
+    labelsep=period
+}
+
+% Source annotation command (12pt, Italic, Right-aligned)
+\newcommand{\source}[1]{%
+    \par\vspace{4pt}%
+    {\raggedleft\fontsize{12}{14}\selectfont\itshape Source: #1\par}%
+    \vspace{6pt}%
+}
+
+% Double border TikZ for cover page
+\newcommand{\drawborder}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width=1.8pt] 
+            ($(current page.north west) + (20mm,-15mm)$) 
+            rectangle 
+            ($(current page.south east) + (-15mm,15mm)$);
+        \draw[line width=0.6pt] 
+            ($(current page.north west) + (21.5mm,-16.5mm)$) 
+            rectangle 
+            ($(current page.south east) + (-13.5mm,13.5mm)$);
+    \end{tikzpicture}
+}
+
+% ================= PROJECT INFORMATION =================
+% >>> CONFIGURE PROJECT METADATA HERE <<<
+\newcommand{\UnivName}{HO CHI MINH CITY UNIVERSITY OF TRANSPORT}
+\newcommand{\InstituteName}{FACULTY / INSTITUTE NAME}
+\newcommand{\ReportType}{PROJECT REPORT}
+\newcommand{\ProjectTitle}{YOUR PROJECT TITLE GOES HERE IN UPPERCASE}
+\newcommand{\CourseName}{Course Subject Name}
+\newcommand{\ClassCode}{CLASS-123456}
+\newcommand{\InstructorName}{Dr. John Doe}
+\newcommand{\StudentName}{Student Full Name}
+\newcommand{\StudentID}{1234567890}
+\newcommand{\LocationDate}{Ho Chi Minh City, Month Year}

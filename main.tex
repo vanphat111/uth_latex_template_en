@@ -1,0 +1,79 @@
+% ==============================================================
+%  MAIN.TEX - Main Entry Point (LaTeX Project Structure)
+% ==============================================================
+
+% Load preamble (packages, typography, and metadata configuration)
+\input{preamble}
+
+% ================= DOCUMENT BEGINS =================
+\begin{document}
+
+% -------------------- 1. COVER PAGE --------------------
+\input{frontmatter/titlepage}
+
+% ===== ROMAN NUMERALS (i, ii, iii...) FOR FRONT MATTER =====
+\cleardoublepage
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% -------------------- 2. FRONT MATTER --------------------
+\input{frontmatter/declaration}
+\input{frontmatter/acknowledgments}
+
+% -------------------- 3. TABLE OF CONTENTS & LISTS --------------------
+\cleardoublepage
+\begingroup
+\singlespacing
+
+\tableofcontents
+
+\input{frontmatter/abbreviations}
+
+\cleardoublepage
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+
+\cleardoublepage
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+
+\endgroup
+
+% ================= 4. MAIN MATTER (CHAPTERS) =================
+\cleardoublepage
+
+% Arabic numbering (1, 2, 3...) from Chapter 1 onwards
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/01_introduction}
+\input{chapters/02_theoretical_background}
+\input{chapters/03_methodology}
+\input{chapters/04_implementation_results}
+\input{chapters/05_conclusion}
+
+% -------------------- 5. REFERENCES --------------------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{REFERENCES}
+\bibliographystyle{ieeetr}
+\bibliography{refs}
+
+% -------------------- 6. APPENDICES --------------------
+\cleardoublepage
+\appendix
+\input{appendices/appendix_a}
+
+\end{document}
