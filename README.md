@@ -2,7 +2,7 @@
 
 A modular, publication-ready LaTeX report template designed for students and researchers at **Ho Chi Minh City University of Transport (UTH)**.
 
-Fully optimized for **Overleaf** and local compilation (TeX Live / VS Code / Makefile).
+Fully optimized for **Overleaf**, local compilation (TeX Live / VS Code / Makefile), and **AI Assistant workflows** (Cursor, ChatGPT, Claude, Gemini...).
 
 ---
 
@@ -13,6 +13,8 @@ uth_latex_template_en/
 ├── main.tex                    # Main driver file (clean structural \input only)
 ├── preamble.tex                # Packages, 13pt Times typography, project metadata
 ├── refs.bib                    # BibTeX bibliographic database
+├── AI_GUIDELINES.md            # Mandatory rules & prompts for AI Assistants
+├── README.md                   # Project documentation & structure guide
 ├── Makefile                    # Automated build scripts for Linux/macOS
 ├── .gitignore                  # Ignore auxiliary LaTeX build artifacts
 │
@@ -38,6 +40,27 @@ uth_latex_template_en/
 ├── tables/                     # Complex standalone table files (optional)
 └── code/                       # Source code scripts (optional)
 ```
+
+---
+
+## 🤖 AI Assistant Guidelines (Cursor, ChatGPT, Claude, Copilot...)
+
+When using AI coding assistants to write or edit chapters, feed [AI_GUIDELINES.md](AI_GUIDELINES.md) as project context or system prompt:
+
+### Core Rules for AI:
+1. **Modular Scope:** Never write content directly in `main.tex`. All chapters belong to `chapters/`. Subfiles must never redeclare `\documentclass` or `\begin{document}`.
+2. **Metadata via Macros:** Change author, title, instructor, etc., in `preamble.tex` via macros—never hardcode strings inside `frontmatter/titlepage.tex`.
+3. **Table Standards:**
+   - Always use `[H]` placement.
+   - `\caption{...}` must be placed **above** the table.
+   - Must append `\source{...}` right after `\end{tabular}`.
+4. **Figure Standards:**
+   - Always use `[H]` placement. Store images in `figures/` (do not prefix `figures/` in `\includegraphics`).
+   - `\caption{...}` must be placed **below** the image.
+   - Must append `\source{...}` right after `\caption{...}`.
+5. **Citations:** Add entries to `refs.bib` and cite with `\cite{key}` (IEEE format `[1]`, `[2]`). Never manually hardcode brackets.
+
+👉 *See full guidelines and code snippets in [AI_GUIDELINES.md](AI_GUIDELINES.md).*
 
 ---
 
@@ -82,15 +105,6 @@ All report metadata is centralized at the bottom of `preamble.tex`. Simply edit 
 \newcommand{\LocationDate}{Ho Chi Minh City, Month Year}
 ```
 *The cover page, declaration, and acknowledgments will automatically sync with these variables!*
-
----
-
-## 💡 Best Practices & Conventions
-
-* **Inserting Figures:** Place images in `figures/` (e.g., `figures/my_chart.png`). Call `\includegraphics[width=...]{my_chart.png}` directly (the search path `figures/` is preconfigured).
-* **Source Attribution:** Use `\source{Source Name}` right after `\caption{...}` for figures and tables.
-* **Citations:** Add entries to `refs.bib` and cite them in text using `\cite{key}` (IEEE format `[1]`, `[2]`).
-* **Source Code Listings:** Use the `\begin{lstlisting}[language=Python] ... \end{lstlisting}` environment.
 
 ---
 
